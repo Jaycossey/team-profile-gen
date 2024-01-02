@@ -1,0 +1,23 @@
+{
+  "name": "team-profile-gen",
+  "version": "1.0.0",
+  "description": "Node project to generate HTML page for teams.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest Intern.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaycossey/team-profile-gen.git"
+  },
+  "author": "https://github.com/Jaycossey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jaycossey/team-profile-gen/issues"
+  },
+  "homepage": "https://github.com/Jaycossey/team-profile-gen#readme",
+  "dependencies": {
+    "inquirer": "^6.5.0",
+    "jest": "^29.7.0"
+  }
+}
