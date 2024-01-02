@@ -30,12 +30,12 @@
 ## Dependencies
 
 <a name="Dependencies"></a>
-> npm inquirer@6.5.0
+> npm inquirer@6.5.0 jest node
 
 ## Testing
 
 <a name="Testing"></a>
-> npm run test
+> jest
 
 ## Contributions
 

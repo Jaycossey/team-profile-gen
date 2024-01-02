@@ -13,17 +13,46 @@ const Manager = require('./classes/Manager');
 const Engineer = require('./classes/Engineer');
 const Intern = require('./classes/Intern');
 
-// Now Im set up, I need the following:
-/**
- * write an algorithm that prompts for user input
- * begin with creating a new manager
- * then assign the manager data
- * then prompt for new staff
- * if 'finished' run template gen
- * if engineer run engineer class then prompt for new staff
- * else if intern run intern class then prompt for new staff
- * 
- * 
- */
+// TEAM, handle storing of data
+const team = [];
 
-// usage instructions
+// OBJECT DESTRUCTURE
+const {name, empId, email, manager, engineer, intern, choosePath} = questions;
+
+// MAIN FUNCTION ------------------------------------------------------------
+const start = async (member) => {
+    // path choice for adding team members
+    let choice;
+    // user input variables
+    let inputName;
+    let inputId;
+    let inputEmail;
+    let inputJob;
+
+    // handle team members structure
+    switch(member) {
+        case 'Finish': 
+            console.log(team);
+            return;
+        case 'Manager':
+            console.log(`Welcome, please enter staff details by following the prompts, starting with the manager:\n`);
+            // how do i ensure that the function waits for user input before running next prompt?
+            inputName = prompt(name); // this will prompt for name
+            inputId = prompt(empId); // this will automatically trigger without waiting for data
+            // I can set async await but where do I call await? 
+            // team.push(new Manager(inputName, inputId, inputEmail, inputJob));
+            break;
+        // case 'Engineer':
+        //     team.push(new Engineer(inputName, inputId, inputEmail, inputJob));
+        //     break;
+        // case 'Intern':
+        //     team.push(new Intern(inputName, inputId, inputEmail, inputJob));
+        //     break;
+        default:
+            console.log(team);
+            return;
+    }
+
+}
+
+start('Manager');
