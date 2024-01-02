@@ -36,9 +36,13 @@ const runPrompts = async (member) => {
             return;
         case 'Manager':
             console.log(`Welcome, please enter staff details by following the prompts, starting with the manager:\n`);
-            const managerQuestions = [name, empId, email, manager, choosePath];
-            const manData = prompt(managerQuestions);
-            // console.log(`log1: ${data.name, data.empId, data.email, data.manager}`);
+            // const managerQuestions = [name, empId, email, manager, choosePath];
+            // const manData = prompt(managerQuestions);
+            // console.log(`log1: ${manData}`);
+            // inputName = 
+
+            // REMOVE MODULARISED PROMPTS!!!!! JUST PROMPT WITHIN THIS FUNCTION NOT 
+            // WITHIN ITS SEPARATE FILE!!! -- will save hassle of transferring data between files.
             break;
         case 'Engineer':
             // team.push(new Engineer(inputName, inputId, inputEmail, inputJob));
