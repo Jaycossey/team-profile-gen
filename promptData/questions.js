@@ -1,4 +1,4 @@
-const questions = {
+module.exports = questions = {
     name: {
         type: 'input',
         name: 'name',
@@ -32,9 +32,7 @@ const questions = {
     choosePath: {
         type: 'list',
         name: 'choosePath',
-        message: 'Choose from the following:\n',
-        choices: ['Add Engineer', 'Add Intern', 'Finish']
+        message: 'Choose from the following to create a new member or end program:\n',
+        choices: ['Engineer', 'Intern', 'Finish']
     }
 }
-
-module.exports = questions;

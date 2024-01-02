@@ -20,7 +20,7 @@ const team = [];
 const {name, empId, email, manager, engineer, intern, choosePath} = questions;
 
 // MAIN FUNCTION ------------------------------------------------------------
-const start = async (member) => {
+const runPrompts = async (member) => {
     // path choice for adding team members
     let choice;
     // user input variables
@@ -36,23 +36,25 @@ const start = async (member) => {
             return;
         case 'Manager':
             console.log(`Welcome, please enter staff details by following the prompts, starting with the manager:\n`);
-            // how do i ensure that the function waits for user input before running next prompt?
-            inputName = prompt(name); // this will prompt for name
-            inputId = prompt(empId); // this will automatically trigger without waiting for data
-            // I can set async await but where do I call await? 
-            // team.push(new Manager(inputName, inputId, inputEmail, inputJob));
+            const managerQuestions = [name, empId, email, manager, choosePath];
+            const manData = prompt(managerQuestions);
+            // console.log(`log1: ${data.name, data.empId, data.email, data.manager}`);
             break;
-        // case 'Engineer':
-        //     team.push(new Engineer(inputName, inputId, inputEmail, inputJob));
-        //     break;
-        // case 'Intern':
-        //     team.push(new Intern(inputName, inputId, inputEmail, inputJob));
-        //     break;
+        case 'Engineer':
+            // team.push(new Engineer(inputName, inputId, inputEmail, inputJob));
+            const engineerQuestions = [name, empId, email, engineer, choosePath];
+            const engData = prompt(engineerQuestions);
+            break;
+        case 'Intern':
+            const internQuestions = [name, empId, email, intern, choosePath];
+            const intData = prompt(internQuestions);
+            // team.push(new Intern(inputName, inputId, inputEmail, inputJob));
+            break;
         default:
             console.log(team);
             return;
     }
-
+    runPrompts(choice);
 }
 
-start('Manager');
+runPrompts('Manager');
