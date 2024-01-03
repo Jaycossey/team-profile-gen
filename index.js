@@ -5,10 +5,9 @@ const path = require('path');
 
 // INQUIRER
 const questions = require('./promptData/questions');
-const customPrompt = require('./promptData/prompt');
 
 // CLASSES
-const Employee = require('./classes/Employee');
+// const Employee = require('./classes/Employee');
 const Manager = require('./classes/Manager');
 const Engineer = require('./classes/Engineer');
 const Intern = require('./classes/Intern');
@@ -21,9 +20,7 @@ const {name, empId, email, manager, engineer, intern, choosePath} = questions;
 
 // MAIN FUNCTION ------------------------------------------------------------
 const runPrompts = (member) => {
-    // path choice for adding team members
-    let choice;
-
+    console.log(`tick, ${member}`);
     // handle team members structure
     switch(member) {
         // handle exit clause if finished prompt cycle
@@ -36,33 +33,46 @@ const runPrompts = (member) => {
             // usage message
             console.log(`Welcome, please enter staff details by following the prompts, starting with the manager:\n`);
 
-            // store data, prompt user for input and assign new object
-            let manData = customPrompt([name, empId, email, manager, choosePath]);
-            team.push(new Manager(manData.name, manData.empId, manData.email, manData.manager));
+            // let manData = customPrompt([name, empId, email, manager, choosePath]);
+            inquirer
+                .prompt([name, empId, email, manager, choosePath])
+                .then((data) => {
+                    // push new team member to array
+                    team.push(new Manager(data.name, data.empId, data.email, data.manager));
+                    // handle choice path for subsequent prompts
+                    runPrompts(data.choosePath);
+                })
+                .catch((err) => {
+                    if (err) console.error(err);
+                });
 
-            // handle choice path for subsequent prompts
-            choice = manData.choosePath;
-            // recursive call to handle loop
-            runPrompts(choice);
             break;
 
         // handle engineer data in the same manner as above
-        case 'Engineer':            
-            let engData = customPrompt([name, empId, email, engineer, choosePath]);
-            team.push(new Engineer(engData.name, engData.empId, engData.email, engData.engineer));
-
-            choice = engData.choosePath;
-            runPrompts(choice);
+        case 'Engineer':
+            inquirer
+                .prompt([name, empId, email, engineer, choosePath])
+                .then((data) => {
+                    team.push(new Engineer(data.name, data.empId, data.email, data.engineer));
+                    runPrompts(data.choosePath);
+                })
+                .catch((err) => {
+                    if (err) console.error(err);
+                });
+            // runPrompts(choice);
             break;
 
         // As above for engineer and manager
         case 'Intern':
-            let intData = customPrompt([name, empId, email, intern, choosePath]);
-            team.push(new Intern(intData.name, intData.empId, intData.email, intData.intern));
-
-            choice = intData.choosePath;
-            runPrompts(choice);
-
+            inquirer
+                .prompt([name, empId, email, intern, choosePath])
+                .then((data) => {
+                    team.push(new Intern(data.name, data.empId, data.email, data.Intern));
+                    runPrompts(data.choosePath);
+                })
+                .catch((err) => {
+                    if (err) console.error(err);
+                });
             break;
     }
 }
