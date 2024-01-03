@@ -16,7 +16,7 @@ module.exports = questions = {
     },
     manager: {
         type: 'number',
-        name: 'officeNo',
+        name: 'officeNumber',
         message: 'Enter Office No.:\n'
     },
     engineer: {
