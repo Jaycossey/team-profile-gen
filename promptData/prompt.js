@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 
 // custom prompt function to ask specific questions from data
-module.exports = prompt = (question) => {
+module.exports = customPrompt = (question) => {
     inquirer
         .prompt(question)
         .then((data) => {
