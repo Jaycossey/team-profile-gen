@@ -14,17 +14,17 @@ module.exports = questions = {
         name: 'email',
         message: 'Enter email address:\n'
     },
-    manager: {
+    officeNumber: {
         type: 'number',
         name: 'officeNumber',
         message: 'Enter Office No.:\n'
     },
-    engineer: {
+    github: {
         type: 'input',
         name: 'github',
         message: 'Enter Github Username:\n'
     },
-    intern: {
+    school: {
         type: 'input',
         name: 'school',
         message: 'Enter School/University:\n'

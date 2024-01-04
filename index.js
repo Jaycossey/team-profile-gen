@@ -23,15 +23,14 @@ const team = {
 };
 
 // OBJECT DESTRUCTURE
-const {name, empId, email, manager, engineer, intern, choosePath} = questions;
+const {name, empId, email, officeNumber, github, school, choosePath} = questions;
 
 // GENERATE TEAM PAGE -------------------------------------------------------
 const generateTeamPage = () => {
-    // const fileStruct = generateStruct(team);
+    const fileStruct = generateStruct(team);
     // fs.writeFile('team.html', fileStruct, (err) => {
     //     if (err) console.error(err);
     // });
-    console.log(team.manager.getOfficeNumber());
 }
 
 // MAIN FUNCTION ------------------------------------------------------------
@@ -52,10 +51,10 @@ const runPrompts = (member) => {
 
             // let manData = customPrompt([name, empId, email, manager, choosePath]);
             inquirer
-                .prompt([name, empId, email, manager, choosePath])
+                .prompt([name, empId, email, officeNumber, choosePath])
                 .then((data) => {
                     // push new team member to array
-                    team.manager = (new Manager(data.name, data.empId, data.email, data.manager));
+                    team.manager = (new Manager(data.name, data.empId, data.email, data.officeNumber));
                     // handle choice path for subsequent prompts
                     runPrompts(data.choosePath);
                 })
@@ -68,9 +67,9 @@ const runPrompts = (member) => {
         // handle engineer data in the same manner as above
         case 'Engineer':
             inquirer
-                .prompt([name, empId, email, engineer, choosePath])
+                .prompt([name, empId, email, github, choosePath])
                 .then((data) => {
-                    team.engineers.push(new Engineer(data.name, data.empId, data.email, data.engineer));
+                    team.engineers.push(new Engineer(data.name, data.empId, data.email, data.github));
                     runPrompts(data.choosePath);
                 })
                 .catch((err) => {
@@ -81,9 +80,9 @@ const runPrompts = (member) => {
         // As above for engineer and manager
         case 'Intern':
             inquirer
-                .prompt([name, empId, email, intern, choosePath])
+                .prompt([name, empId, email, school, choosePath])
                 .then((data) => {
-                    team.interns.push(new Intern(data.name, data.empId, data.email, data.Intern));
+                    team.interns.push(new Intern(data.name, data.empId, data.email, data.school));
                     runPrompts(data.choosePath);
                 })
                 .catch((err) => {
