@@ -1,11 +1,10 @@
 module.exports = generateStruct = (team) => {
-    team.forEach((element) => {
-        let teamCard = createElement('div');
-        teamCard.className = "card";
-        console.log(team[element]);
-    })
 
     return `
-
+<div class="card">
+    <h2>${team.name}</h2>
+    <h4>Employee ID: ${team.empId}</h4>
+    <h4></h4>
+</div>
     `
 }
