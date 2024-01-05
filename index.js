@@ -7,6 +7,7 @@ const path = require('path');
 const questions = require('./promptData/questions');
 
 // PAGE STRUCTURE
+const generateCards = require('./generateStructure/generateCards');
 const generateStruct = require('./generateStructure/generateStruct');
 
 // CLASSES
@@ -27,10 +28,28 @@ const {name, empId, email, officeNumber, github, school, choosePath} = questions
 
 // GENERATE TEAM PAGE -------------------------------------------------------
 const generateTeamPage = () => {
-    const fileStruct = generateStruct(team);
-    // fs.writeFile('team.html', fileStruct, (err) => {
-    //     if (err) console.error(err);
-    // });
+    // empty array to handle card generation
+    const cards = [];
+    // assign each member their card
+    const managerCard = generateCards(team.manager, 'manager');
+    const engineerCards = team.engineers.forEach((engineer) => {
+        generateCards(engineer, 'engineer')});
+    const internCards = team.interns.forEach((intern) => {
+        generateCards(intern, 'intern')});
+
+    cards.push(managerCard, engineerCards, internCards);
+    console.log(cards);
+    // console.log(managerCard);
+    // html file structure
+    const fileStruct = generateStruct(cards);
+    // write html file
+    fs.writeFile('index.html', fileStruct, (err) => {
+        if(err) {
+            console.error(err);
+        } else {
+            console.log(`Success! Your file has been written to {directory}`);
+        }
+    })
 }
 
 // MAIN FUNCTION ------------------------------------------------------------
