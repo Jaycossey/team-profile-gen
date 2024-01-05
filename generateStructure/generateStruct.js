@@ -1,5 +1,4 @@
 module.exports = generateStruct = (cards) => {
-    console.log(cards);
     const cardList = cards.map(card => card);
     const cardString = cardList.join('');
     // return html file structure, will need debugging
