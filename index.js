@@ -50,8 +50,17 @@ const generateTeamPage = () => {
 
     // html file structure
     const fileStruct = generateStruct(cards);
+    
+    // create directory
+    fs.mkdir('./output', (err) => {
+        if(err) {
+            return console.error(err);
+        } 
+        console.log(`Directory created`);
+    });
+
     // write html file
-    fs.writeFile('index.html', fileStruct, (err) => {
+    fs.writeFile('./output/index.html', fileStruct, (err) => {
         if(err) {
             console.error(err);
         } else {
