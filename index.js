@@ -76,7 +76,6 @@ const runPrompts = (member) => {
     switch(member) {
         // handle exit clause if finished prompt cycle
         case 'Finish': 
-            console.log(team);
             generateTeamPage();
             return;
 
