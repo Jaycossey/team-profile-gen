@@ -30,16 +30,24 @@ const {name, empId, email, officeNumber, github, school, choosePath} = questions
 const generateTeamPage = () => {
     // empty array to handle card generation
     const cards = [];
-    // assign each member their card
+    
+    // Manager functions correctly
     const managerCard = generateCards(team.manager, 'manager');
-    const engineerCards = team.engineers.forEach((engineer) => {
-        generateCards(engineer, 'engineer')});
-    const internCards = team.interns.forEach((intern) => {
-        generateCards(intern, 'intern')});
+    // push manager card to array
+    cards.push(managerCard);
+    
+    // engineer cards
+    for (let i = 0; i < team.engineers.length; i++) {
+        let engCard = generateCards(team.engineers[i], 'engineer');
+        cards.push(engCard);
+    }
+    
+    // intern cards
+    for (let i = 0; i < team.interns.length; i++) {
+        let intCard = generateCards(team.interns[i], 'intern');
+        cards.push(intCard);
+    }
 
-    cards.push(managerCard, engineerCards, internCards);
-    console.log(cards);
-    // console.log(managerCard);
     // html file structure
     const fileStruct = generateStruct(cards);
     // write html file

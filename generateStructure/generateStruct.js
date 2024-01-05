@@ -1,7 +1,10 @@
 module.exports = generateStruct = (cards) => {
     console.log(cards);
+    const cardList = cards.map(card => card);
+    const cardString = cardList.join('');
     // return html file structure, will need debugging
     return `
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -28,18 +31,38 @@ module.exports = generateStruct = (cards) => {
                 padding-top: 10px;
                 text-align: center;
                 margin-bottom: 10px;
+                position: fixed;
             }
             #root {
                 width: 95%;
+                padding: 10px;
                 background-color: green;
                 margin: auto;
-                height: 65vh;
-                margin-bottom: 10px;
+                height: auto;
+                margin-bottom: 15vh;
+                margin-top: 15vh;
+            }
+            .card {
+                display: flex;
+                text-align: center;
+                flex-direction: column;
+                border: 2px solid black;
+                width: 300px;
+                margin: auto;
+                margin-top: 15px;
+            }
+            .card > h1 {
+                font-size: 1rem;
+            }
+            .card > h3 {
+                font-size: 0.8rem;
             }
             footer {
+                position: fixed;
                 height: 10vh;
                 width: 95%;
                 margin: auto;
+                bottom: 0;
                 background-color: green;
             }
         </style>
@@ -49,7 +72,7 @@ module.exports = generateStruct = (cards) => {
     
         <!-- Team viewer root div -->
         <div id="root">
-            ${cards.map(() => {})}
+            ${cardString}    
         </div>
     
         <!-- Footer display -->
@@ -59,5 +82,6 @@ module.exports = generateStruct = (cards) => {
         <script></script>
     </body>
     </html>
+    
     `
 }

@@ -4,24 +4,24 @@ module.exports = generateCards = (team, job) => {
     let roleText;
     switch(job) {
         case 'manager':
-            roleText = `Office Number: ${team.getRole()}`;
+            roleText = `${team.getRole()}\nOffice Number: ${team.getOfficeNumber()}`;
             break;
         case 'engineer':
-            roleText = `GitHub: ${team.getRole()}`;
+            roleText = `${team.getRole()}\nGitHub: ${team.getGithub()}`;
             break;
         case 'intern':
-            roleText = `School: ${team.getRole()}`;
+            roleText = `${team.getRole()}\nSchool: ${team.getSchool()}`;
             break;
         default:
             return;
     }
 
-    return `
+    return (`
     <div class="card">
         <h1>Name: ${team.getName()}</h1>
         <h3>Employee ID: ${team.getId()}</h3>
         <h3>Email Address: ${team.getEmail()}</h3>
-        <h3>${job}</h3>
+        <h3>${roleText}</h3>
     </div>
-    `
+    `)
 }
